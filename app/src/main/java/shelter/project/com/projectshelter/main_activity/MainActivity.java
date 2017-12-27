@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
 
 
-    private MainPresenter mPresenter;
+    private MainContract.Presenter mPresenter;
     final String TAG_FRAGMENT_HOME = "home";
     final String TAG_FRAGMENT_SEARCH = "search";
     final String TAG_FRAGMENT_FAVORITE = "favourite";
@@ -134,6 +134,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void setPresenter(MainContract.Presenter mPresenter) {
-
+        this.mPresenter = mPresenter;
     }
 }
