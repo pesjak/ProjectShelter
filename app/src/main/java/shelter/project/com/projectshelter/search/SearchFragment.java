@@ -1,4 +1,4 @@
-package shelter.project.com.projectshelter;
+package shelter.project.com.projectshelter.search;
 
 
 import android.os.Bundle;
@@ -7,14 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import shelter.project.com.projectshelter.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class IntroFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
 
-    public IntroFragment() {
+    public SearchFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +24,7 @@ public class IntroFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_intro, container, false);
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
 }
