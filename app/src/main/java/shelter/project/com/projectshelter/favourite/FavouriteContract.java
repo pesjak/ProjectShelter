@@ -1,4 +1,4 @@
-package shelter.project.com.projectshelter.home;
+package shelter.project.com.projectshelter.favourite;
 
 import java.util.List;
 
@@ -10,22 +10,19 @@ import shelter.project.com.projectshelter.data.AnimalPOJO;
  * Created by primo on 7. 11. 2017.
  */
 
-public interface HomeContract {
+public interface FavouriteContract {
     interface View extends BaseView<Presenter> {
+        void showListAnimals(List<AnimalPOJO> animalPOJOList);
+
         void showMessageError(String error);
 
-        void showFavouriteAnimals(List<AnimalPOJO> animalPOJOList);
+        //   void showListShelters(List<Shelter> animalPOJOList);
     }
 
     interface Presenter extends BasePresenter {
-        void loadListAnimals(int species, int town);
 
-        void loadListShelters();
+        void loadFavouriteAnimals();
 
-        void removeFromFavourites(AnimalPOJO animalPOJO);
-
-        void addFavourites(AnimalPOJO animalPOJO);
-
-        void openAnimal(AnimalPOJO animalPOJO);
+        void removeFavouriteAnimal();
     }
 }

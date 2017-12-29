@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import shelter.project.com.projectshelter.OnAnimalClicked;
+import shelter.project.com.projectshelter.listeners.OnAnimalListener;
 import shelter.project.com.projectshelter.R;
 import shelter.project.com.projectshelter.data.AnimalPOJO;
 
@@ -26,17 +26,17 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
     TextView tvSpeciesAge;
 
     private final String TAG = "WallpaperExplore";
-    private final OnAnimalClicked onAnimalClicked;
+    private final OnAnimalListener onAnimalListener;
     private AnimalPOJO animalPojo;
 
     /*
     * Initialize
     * */
 
-    public AnimalViewHolder(View itemView, final OnAnimalClicked onAnimalClicked) {
+    public AnimalViewHolder(View itemView, final OnAnimalListener onAnimalListener) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        this.onAnimalClicked = onAnimalClicked;
+        this.onAnimalListener = onAnimalListener;
     }
 
     /*

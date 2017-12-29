@@ -1,12 +1,8 @@
 package shelter.project.com.projectshelter.home;
 
-import android.content.SharedPreferences;
-
 import java.util.List;
 
 import shelter.project.com.projectshelter.data.AnimalPOJO;
-import shelter.project.com.projectshelter.helpers.SharedPreferencesHelper;
-import shelter.project.com.projectshelter.main_activity.MainContract;
 import shelter.project.com.projectshelter.retrofit.RetrofitCallbacks;
 import shelter.project.com.projectshelter.retrofit.RetrofitHelper;
 
@@ -43,7 +39,7 @@ public class HomePresenter implements HomeContract.Presenter {
         RetrofitHelper.getAnimals(new RetrofitCallbacks.getAnimalsCallback() {
             @Override
             public void onAnimalsLoaded(List<AnimalPOJO> animalPOJOList) {
-                mView.showListAnimals(animalPOJOList);
+                mView.showFavouriteAnimals(animalPOJOList);
             }
 
             @Override
@@ -55,6 +51,21 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void loadListShelters() {
+
+    }
+
+    @Override
+    public void removeFromFavourites(AnimalPOJO animalPOJO) {
+
+    }
+
+    @Override
+    public void addFavourites(AnimalPOJO animalPOJO) {
+
+    }
+
+    @Override
+    public void openAnimal(AnimalPOJO animalPOJO) {
 
     }
 }

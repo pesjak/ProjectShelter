@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import shelter.project.com.projectshelter.OnAnimalClicked;
+import shelter.project.com.projectshelter.listeners.OnAnimalListener;
 import shelter.project.com.projectshelter.R;
 import shelter.project.com.projectshelter.data.AnimalPOJO;
 import shelter.project.com.projectshelter.viewholders.AnimalViewHolder;
@@ -20,21 +20,21 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
     final String TAG = "ExploreAdapter";
 
     private Context context;
-    private OnAnimalClicked onAnimalClicked;
+    private OnAnimalListener onAnimalListener;
     private List<AnimalPOJO> animalPOJOS;
 
     public AnimalsAdapter(Context context,
-                          OnAnimalClicked onAnimalClicked,
+                          OnAnimalListener onAnimalListener,
                           List<AnimalPOJO> animalPOJOS) {
         this.context = context;
-        this.onAnimalClicked = onAnimalClicked;
+        this.onAnimalListener = onAnimalListener;
         this.animalPOJOS = animalPOJOS;
     }
 
     @Override
     public AnimalViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_animal, parent, false);
-        return new AnimalViewHolder(v, onAnimalClicked);
+        return new AnimalViewHolder(v, onAnimalListener);
     }
 
     @Override
