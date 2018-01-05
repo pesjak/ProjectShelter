@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 
 import com.github.paolorotolo.appintro.AppIntro;
 
@@ -24,19 +25,21 @@ public class IntroActivity extends AppIntro {
 
         // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(IntroFragment.newInstance(R.layout.fragment_intro1));
-        addSlide(IntroFragment.newInstance(R.layout.fragment_intro2));
-        addSlide(IntroFragment.newInstance(R.layout.fragment_intro3));
+        addSlide(IntroFragment1.newInstance());
+        addSlide(IntroFragment2.newInstance());
+        addSlide(IntroFragment3.newInstance());
 
 
         // OPTIONAL METHODS
         // Override bar/separator color.
-  /*      setBarColor(Color.parseColor("#3F51B5"));
-        setSeparatorColor(Color.parseColor("#2196F3"));
-*/
+        setBarColor(Color.parseColor("#3F51B5"));
+        setSeparatorColor(ContextCompat.getColor(getBaseContext(), R.color.orange_dark));
+
+
+        showSkipButton(false);
+
 /*
         // Hide Skip/Done button.
-        showSkipButton(false);
         setProgressButtonEnabled(false);
 */
 
