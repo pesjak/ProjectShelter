@@ -1,12 +1,16 @@
 package shelter.project.com.projectshelter.retrofit;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import shelter.project.com.projectshelter.data.AnimalPOJO;
 import shelter.project.com.projectshelter.data.AnimalsResponse;
+import shelter.project.com.projectshelter.data.UserRepository;
 import shelter.project.com.projectshelter.helpers.SharedPreferencesHelper;
+import shelter.project.com.projectshelter.mvp_register.listeners.OnRegisterCompletedListener;
 
 /**
  * Created by Primož on 27/12/2017.
@@ -74,4 +78,15 @@ public class RetrofitHelper {
     public static void getShelters() {
     }
 
+    public static void setAnimalFavourite(RetrofitCallbacks.changeFavouriteAnimal changeFavouriteAnimal, AnimalPOJO animalPOJO, boolean changeToFavourite) {
+
+    }
+
+    public static void registerUser(UserRepository mUserRepository, SharedPreferences sharedPreferences, String email, String password, OnRegisterCompletedListener onRegisterCompletedListener) {
+
+    }
+
+    public static void loginUserNormalToServer(UserRepository mUserRepository, SharedPreferences sharedPreferences, String email, String password, OnLoginCompletedListener onLoginCompletedListener) {
+
+    }
 }

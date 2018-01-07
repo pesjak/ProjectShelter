@@ -1,6 +1,7 @@
 package shelter.project.com.projectshelter.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
@@ -16,10 +17,13 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import shelter.project.com.projectshelter.data.UserRepository;
+import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
 import shelter.project.com.projectshelter.listeners.OnAnimalListener;
 import shelter.project.com.projectshelter.R;
 import shelter.project.com.projectshelter.adapters.AnimalsAdapter;
 import shelter.project.com.projectshelter.data.AnimalPOJO;
+import shelter.project.com.projectshelter.mvp_login.ActivityLogin;
 
 
 /**
@@ -50,7 +54,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, OnAnima
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        mPresenter = new HomePresenter(this);
+        mPresenter = new HomePresenter(this, UserRepository.getInstance());
         unbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -61,6 +65,11 @@ public class HomeFragment extends Fragment implements HomeContract.View, OnAnima
         mPresenter.start();
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        unbinder.unbind();
+    }
 
     @Override
     public void showMessageError(String error) {
@@ -76,30 +85,32 @@ public class HomeFragment extends Fragment implements HomeContract.View, OnAnima
         rvAnimals.setLayoutManager(layoutManager);
     }
 
+    @Override
+    public void showLogin() {
+        Intent intent = new Intent(getActivity(), ActivityLogin.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void setPresenter(HomeContract.Presenter mPresenter) {
         mPresenter = this.mPresenter;
     }
 
+
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    public void onAnimalClick(AnimalPOJO animalPOJO) {
+        mPresenter.openAnimal(animalPOJO);
     }
 
     @Override
-    public void onAnimalClick(AnimalPOJO wallpaperPOJO) {
-        mPresenter.openAnimal(wallpaperPOJO);
+    public void onAnimalRemove(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse) {
+        mPresenter.changeFavouriteAnimal(animalPOJO, onAnimalFavouriteResponse, false);
     }
 
     @Override
-    public void onAnimalRemove(AnimalPOJO wallpaperPOJO) {
-        mPresenter.removeFromFavourites(wallpaperPOJO);
+    public void onAnimalAddFavourite(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse) {
+        mPresenter.changeFavouriteAnimal(animalPOJO, onAnimalFavouriteResponse, true);
     }
 
-    @Override
-    public void onAnimalAddFavourite(AnimalPOJO animalPOJO) {
-        mPresenter.addFavourites(animalPOJO);
-    }
 }

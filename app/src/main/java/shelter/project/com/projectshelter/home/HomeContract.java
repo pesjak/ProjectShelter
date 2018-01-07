@@ -5,6 +5,7 @@ import java.util.List;
 import shelter.project.com.projectshelter.BasePresenter;
 import shelter.project.com.projectshelter.BaseView;
 import shelter.project.com.projectshelter.data.AnimalPOJO;
+import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
 
 /**
  * Created by primo on 7. 11. 2017.
@@ -15,6 +16,8 @@ public interface HomeContract {
         void showMessageError(String error);
 
         void showFavouriteAnimals(List<AnimalPOJO> animalPOJOList);
+
+        void showLogin();
     }
 
     interface Presenter extends BasePresenter {
@@ -22,9 +25,7 @@ public interface HomeContract {
 
         void loadListShelters();
 
-        void removeFromFavourites(AnimalPOJO animalPOJO);
-
-        void addFavourites(AnimalPOJO animalPOJO);
+        void changeFavouriteAnimal(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse, boolean toFavourite);
 
         void openAnimal(AnimalPOJO animalPOJO);
     }

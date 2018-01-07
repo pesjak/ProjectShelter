@@ -8,9 +8,9 @@ import shelter.project.com.projectshelter.data.AnimalPOJO;
 
 public interface OnAnimalListener {
 
-    void onAnimalClick(AnimalPOJO wallpaperPOJO);
+    void onAnimalClick(AnimalPOJO animalPOJO);
 
-    void onAnimalRemove(AnimalPOJO wallpaperPOJO);
+    void onAnimalRemove(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse);
 
-    void onAnimalAddFavourite(AnimalPOJO wallpaperPOJO);
+    void onAnimalAddFavourite(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse);
 }

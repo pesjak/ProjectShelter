@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="shelter.project.com.projectshelter">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:name=".MyApplication"
@@ -21,6 +27,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".intro.IntroActivity" />
+
+        <activity
+            android:name=".mvp_login.ActivityLogin"
+            android:label="@string/login"
+            android:theme="@style/AppTheme"/>
+
+        <activity
+            android:name=".mvp_register.ActivityRegister"
+            android:label="@string/register"
+            android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

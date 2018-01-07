@@ -10,5 +10,17 @@
 
     <color name="orange_light">#fd8965</color>
     <color name="orange_dark">#fd5623</color>
+    <color name="green_dark">#629351</color>
+    <color name="red">#ffff4444</color>
+
+    <!-- Barva soft_črte -->
+    <color name="color_line">#dddddd</color>
+    <color name="color_line_transparent">#649a9b9a</color>
+    <color name="color_line_dark">#494949</color>
+
+    <color name="color_text_hint">#fdfdfe</color>
+    <color name="color_transparent">#0000</color>
+    <color name="color_error">#d90606</color>
+    <color name="color_login_text">#9a9b9a</color>
 
 </resources>

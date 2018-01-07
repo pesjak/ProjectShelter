@@ -18,5 +18,9 @@ public interface RetrofitCallbacks {
 
         void onErrorGettingAnimals(String error);
     }
+    interface changeFavouriteAnimal {
+        void onSuccess();
 
+        void onFailed(String error);
+    }
 }

@@ -27,6 +27,8 @@ public interface UserDataSource {
 
     void getUser(GetLoggedInUserCallback callback);
 
+    boolean isUserLoggedIn();
+
     void updateUser(UpdateUserCallback callback); //TODO
 
 

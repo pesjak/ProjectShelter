@@ -54,6 +54,11 @@ public class UserRepository implements UserDataSource {
     }
 
     @Override
+    public boolean isUserLoggedIn() {
+        return realm.where(RealmUser.class).findFirst() != null;
+    }
+
+    @Override
     public void updateUser(UpdateUserCallback callback) {
         //TODO
         realm.executeTransactionAsync(realm -> {

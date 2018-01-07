@@ -14,4 +14,33 @@
     <string name="error_no_fav_animals">Nimate še priljubljenih živali</string>
     <string name="error_getting_shelters">Nisem mogli pridobiti zavetišča</string>
 
+
+    <!-- FONT AWESOME -->
+    <string name="fa_heart">&#xf004;</string>
+    <string name="fa_heart_o">&#xf08a;</string>
+    <string name="fa_share">&#xf064;</string>
+    <string name="fa_image">&#xf03e;</string>
+    <string name="fa_close">&#xf00d;</string>
+    <string name="fa_check">&#xf00c;</string>
+    <string name="fa_pencil">&#xf040;</string>
+    <string name="fa_home">&#xf015;</string>
+    <string name="fa_criteria">&#xf1de;</string>
+    <string name="fa_fire">&#xf06d;</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+
+    <string name="hint_email"><i>Email</i></string>
+    <string name="hint_password"><i>Password</i></string>
+    <string name="btn_sign_in">Login</string>
+    <string name="string_forgotten_password">Forgotten Password?</string>
+    <string name="register">Register</string>
+    <string name="message_registration_success">Registered Successfully</string>
+    <string name="message_registration_failed">Something went wrong</string>
+    <string name="err_msg_email">Check email</string>
+    <string name="err_msg_password">Check password</string>
+    <string name="message_login_success">Login succesful</string>
+    <string name="message_login_failed">Login failed</string>
+
+
 </resources>

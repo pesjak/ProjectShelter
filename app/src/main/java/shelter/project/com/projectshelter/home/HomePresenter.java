@@ -1,8 +1,14 @@
 package shelter.project.com.projectshelter.home;
 
+import android.util.Log;
+
 import java.util.List;
 
 import shelter.project.com.projectshelter.data.AnimalPOJO;
+import shelter.project.com.projectshelter.data.RealmUser;
+import shelter.project.com.projectshelter.data.UserDataSource;
+import shelter.project.com.projectshelter.data.UserRepository;
+import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
 import shelter.project.com.projectshelter.retrofit.RetrofitCallbacks;
 import shelter.project.com.projectshelter.retrofit.RetrofitHelper;
 
@@ -14,9 +20,11 @@ public class HomePresenter implements HomeContract.Presenter {
     private final String TAG = "MainPresenter";
 
     private final HomeContract.View mView;
+    private UserRepository mUserRepository;
 
-    public HomePresenter(HomeContract.View mView) {
+    public HomePresenter(HomeContract.View mView, UserRepository mUserRepository) {
         this.mView = mView;
+        this.mUserRepository = mUserRepository;
         mView.setPresenter(this);
     }
 
@@ -55,13 +63,23 @@ public class HomePresenter implements HomeContract.Presenter {
     }
 
     @Override
-    public void removeFromFavourites(AnimalPOJO animalPOJO) {
+    public void changeFavouriteAnimal(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse, boolean toFavourite) {
+        if (mUserRepository.isUserLoggedIn()) {
+            RetrofitHelper.setAnimalFavourite(new RetrofitCallbacks.changeFavouriteAnimal() {
+                @Override
+                public void onSuccess() {
+                    onAnimalFavouriteResponse.onSuccess();
+                }
 
-    }
-
-    @Override
-    public void addFavourites(AnimalPOJO animalPOJO) {
-
+                @Override
+                public void onFailed(String error) {
+                    Log.e(TAG, "onFailed: " + error);
+                    onAnimalFavouriteResponse.onFailed();
+                }
+            }, animalPOJO, toFavourite);
+        }else{
+            mView.showLogin();
+        }
     }
 
     @Override
