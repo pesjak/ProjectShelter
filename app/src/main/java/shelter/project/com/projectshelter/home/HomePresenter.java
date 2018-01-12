@@ -5,8 +5,7 @@ import android.util.Log;
 import java.util.List;
 
 import shelter.project.com.projectshelter.data.AnimalPOJO;
-import shelter.project.com.projectshelter.data.RealmUser;
-import shelter.project.com.projectshelter.data.UserDataSource;
+import shelter.project.com.projectshelter.data.ShelterPOJO;
 import shelter.project.com.projectshelter.data.UserRepository;
 import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
 import shelter.project.com.projectshelter.retrofit.RetrofitCallbacks;
@@ -32,13 +31,16 @@ public class HomePresenter implements HomeContract.Presenter {
     public void start() {
 
         /*
+        * TODO
         * Check if search saved in local base
         * Send that search to request
         * If no search show random animals
         *
         * */
+
         loadListShelters();
         loadListAnimals(2, 1000);
+
     }
 
 
@@ -46,8 +48,9 @@ public class HomePresenter implements HomeContract.Presenter {
     public void loadListAnimals(int species, int town) {
         RetrofitHelper.getAnimals(new RetrofitCallbacks.getAnimalsCallback() {
             @Override
-            public void onAnimalsLoaded(List<AnimalPOJO> animalPOJOList) {
-                mView.showFavouriteAnimals(animalPOJOList);
+            public void onAnimalsLoaded(List<AnimalPOJO> animalPOJOS) {
+                mView.showAnimals(animalPOJOS);
+                mView.hideProgressBarAnimals();
             }
 
             @Override
@@ -59,6 +62,19 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void loadListShelters() {
+        RetrofitHelper.getShelters(new RetrofitCallbacks.getSheltersCallback() {
+            @Override
+            public void onSheltersLoaded(List<ShelterPOJO> shelterPOJOS) {
+                mView.showShelters(shelterPOJOS);
+                mView.hideProgressBarShelters();
+            }
+
+            @Override
+            public void onError(String error) {
+                mView.showMessageError(error);
+
+            }
+        });
 
     }
 
@@ -77,13 +93,19 @@ public class HomePresenter implements HomeContract.Presenter {
                     onAnimalFavouriteResponse.onFailed();
                 }
             }, animalPOJO, toFavourite);
-        }else{
+        } else {
             mView.showLogin();
         }
     }
 
     @Override
     public void openAnimal(AnimalPOJO animalPOJO) {
+        mView.showMessageError("Opened animalPOJO");
 
+    }
+
+    @Override
+    public void openShelter(ShelterPOJO shelterPOJO) {
+        mView.showMessageError("Opened Shelter");
     }
 }

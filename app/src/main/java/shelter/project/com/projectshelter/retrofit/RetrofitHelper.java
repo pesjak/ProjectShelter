@@ -8,6 +8,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import shelter.project.com.projectshelter.data.AnimalPOJO;
 import shelter.project.com.projectshelter.data.AnimalsResponse;
+import shelter.project.com.projectshelter.data.SheltersResponse;
 import shelter.project.com.projectshelter.data.UserRepository;
 import shelter.project.com.projectshelter.helpers.SharedPreferencesHelper;
 import shelter.project.com.projectshelter.mvp_register.listeners.OnRegisterCompletedListener;
@@ -37,45 +38,26 @@ public class RetrofitHelper {
             }
         });
 
-      /*
-
-       user.enqueue(new Callback<AnimalsResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                Log.d("Response Raw", response.raw() + "");
-                try {
-                    UserBody userBody = response.body().getBody();
-                    if (userBody != null) {
-                        *//*
-                        String name = userBody.getFull_name();
-                        String id = String.valueOf(userBody.getId());
-                        *//*
-                        SharedPreferencesHelper.savePreferencesFirstStart(sharedPreferences, false);
-                        userRepository.saveNewUser(userBody);
-                        onLoginCompletedListener.onLoginSuccess();
-
-                    } else {
-                        LoginManager.getInstance().logOut();
-                        String error = response.body().getHeader().getValidation_errors().getPassword();
-                        onLoginCompletedListener.onLoginFailed();
-                    }
-                } catch (Exception ex) {
-                    Log.e("Napaka pri Parsanju", ex.toString());
-                    onLoginCompletedListener.onLoginFailed();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                Log.e("Error pri prijavi", t.toString());
-                onLoginCompletedListener.onLoginFailed();
-                // MyFunctions.myShortToast(mContext, "Preverite povezavo do spleta");
-            }
-        });*/
-
     }
 
-    public static void getShelters() {
+    public static void getShelters(RetrofitCallbacks.getSheltersCallback callback) {
+        //  http://mojamalica.com/GetShelters.php
+
+        final ShelterProjectAPIService apiService = RetrofitServiceClient.createService(ShelterProjectAPIService.class);
+        Call<SheltersResponse> call = apiService.getShelters();
+        call.enqueue(new Callback<SheltersResponse>() {
+            @Override
+            public void onResponse(Call<SheltersResponse> call, Response<SheltersResponse> response) {
+                callback.onSheltersLoaded(response.body().getData());
+            }
+
+            @Override
+            public void onFailure(Call<SheltersResponse> call, Throwable t) {
+                callback.onError(t.getMessage());
+            }
+        });
+
+
     }
 
     public static void setAnimalFavourite(RetrofitCallbacks.changeFavouriteAnimal changeFavouriteAnimal, AnimalPOJO animalPOJO, boolean changeToFavourite) {

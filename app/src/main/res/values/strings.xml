@@ -14,7 +14,6 @@
     <string name="error_no_fav_animals">Nimate še priljubljenih živali</string>
     <string name="error_getting_shelters">Nisem mogli pridobiti zavetišča</string>
 
-
     <!-- FONT AWESOME -->
     <string name="fa_heart">&#xf004;</string>
     <string name="fa_heart_o">&#xf08a;</string>
@@ -41,6 +40,9 @@
     <string name="err_msg_password">Check password</string>
     <string name="message_login_success">Login succesful</string>
     <string name="message_login_failed">Login failed</string>
+    <string name="find_your_animal">Najdi svojo žival</string>
+    <string name="color">Barva</string>
+    <string name="type">Vrsta</string>
 
 
 </resources>

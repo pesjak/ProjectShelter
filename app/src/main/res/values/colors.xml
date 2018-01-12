@@ -23,4 +23,6 @@
     <color name="color_error">#d90606</color>
     <color name="color_login_text">#9a9b9a</color>
 
+
+    <color name="black">#000000</color>
 </resources>

@@ -3,7 +3,10 @@ package shelter.project.com.projectshelter.viewholders;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,9 +31,11 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
     TextView tvSpeciesAge;
     @BindView(R.id.tvIconLike)
     TextViewFont tvIconLike;
+    @BindView(R.id.ivAnimal)
+    ImageView ivAnimal;
 
 
-    private final String TAG = "WallpaperExplore";
+    private final String TAG = "AnimalViewHolder";
     private final OnAnimalListener onAnimalListener;
     private AnimalPOJO animalPojo;
     private Context mContext;
@@ -59,7 +64,8 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
         this.mContext = context;
         this.animalPojo = animalPOJO;
         tvName.setText(animalPOJO.getName());
-        tvSpeciesAge.setText(String.format("%s, %s", animalPOJO.getGender(), animalPOJO.getAge()));
+        tvSpeciesAge.setText(String.format("%s, %s", animalPOJO.getGender().toUpperCase(), animalPOJO.getAge()+" leta"));
+        Glide.with(context).load(animalPOJO.getPicture()).into(ivAnimal);
     }
     /*
     *Getters

@@ -5,6 +5,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import shelter.project.com.projectshelter.data.AnimalsResponse;
+import shelter.project.com.projectshelter.data.SheltersResponse;
 
 /**
  * Created by primo on 21. 11. 2017.
@@ -13,4 +14,7 @@ import shelter.project.com.projectshelter.data.AnimalsResponse;
 public interface ShelterProjectAPIService {
     @GET("search.php")
     Call<AnimalsResponse> getAnimals(@Query("species")int speciesID, @Query("town")int townID);
+
+    @GET("GetShelters.php")
+    Call<SheltersResponse> getShelters();
 }
