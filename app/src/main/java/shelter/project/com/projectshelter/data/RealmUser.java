@@ -8,16 +8,16 @@ import io.realm.RealmObject;
  */
 public class RealmUser extends RealmObject {
 
-    int something;
+    String email;
 
     public RealmUser() {
     }
 
-    public int getSomething() {
-        return something;
+    public String getEmail() {
+        return email;
     }
 
-    public void setSomething(int something) {
-        this.something = something;
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

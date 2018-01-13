@@ -23,7 +23,8 @@ public interface UserDataSource {
         void noUsers();
     }
 
-    void saveNewUser(); //TODO
+
+    void saveNewUser(String email);
 
     void getUser(GetLoggedInUserCallback callback);
 

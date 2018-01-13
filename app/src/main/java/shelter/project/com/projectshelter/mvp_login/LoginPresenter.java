@@ -37,7 +37,7 @@ public class LoginPresenter implements LoginContract.Presenter {
 
     @Override
     public void loginNormal(EditText email, EditText password) {
-        RetrofitHelper.loginUserNormalToServer(mUserRepository, sharedPreferences, email.getText().toString(), password.getText().toString(), new OnLoginCompletedListener() {
+        RetrofitHelper.loginUserNormalToServer(mUserRepository,  email.getText().toString(), password.getText().toString(), new OnLoginCompletedListener() {
             @Override
             public void onLoginSuccess() {
                 openMainActivity();

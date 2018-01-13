@@ -86,7 +86,7 @@ public class AnimalViewHolder extends RecyclerView.ViewHolder {
                     onAnimalListener.onAnimalAddFavourite(animalPojo, new OnAnimalFavouriteResponse() {
                         @Override
                         public void onSuccess() {
-                            showEmptyHeart();
+                            showFullHeart();
                         }
 
                         @Override

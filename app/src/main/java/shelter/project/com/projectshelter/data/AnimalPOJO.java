@@ -9,6 +9,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class AnimalPOJO {
 
+    @SerializedName("Id_Animals") //Cat, Dog
+    @Expose
+    private String id;
+    @SerializedName("Id_Shelters") //Cat, Dog
+    @Expose
+    private String id_shelter;
     @SerializedName("Type") //Cat, Dog
     @Expose
     private String type;
@@ -96,5 +102,22 @@ public class AnimalPOJO {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public String getId_shelter() {
+        return id_shelter;
+    }
+
+    public void setId_shelter(String id_shelter) {
+        this.id_shelter = id_shelter;
+    }
+
+    public String getId() {
+
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

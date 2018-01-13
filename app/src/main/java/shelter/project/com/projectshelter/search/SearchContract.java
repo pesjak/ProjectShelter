@@ -1,4 +1,4 @@
-package shelter.project.com.projectshelter.home;
+package shelter.project.com.projectshelter.search;
 
 import java.util.List;
 
@@ -12,30 +12,29 @@ import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
  * Created by primo on 7. 11. 2017.
  */
 
-public interface HomeContract {
+public interface SearchContract {
     interface View extends BaseView<Presenter> {
         void showMessageError(String error);
 
-        void showAnimals(List<AnimalPOJO> animalPOJOList);
+        void showUserPreference();
 
         void showLogin();
 
-        void showShelters(List<ShelterPOJO> shelterPOJOS);
+        void showLoading();
 
-        void hideProgressBarAnimals();
-        void hideProgressBarShelters();
+        void hideLoading();
+
+        void showSearchResults(List<AnimalPOJO> animalPOJO);
     }
 
     interface Presenter extends BasePresenter {
+        void loadUserSearch();
 
-        void loadListAnimals();
-
-        void loadListShelters();
-
-        void changeFavouriteAnimal(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse, boolean toFavourite);
+        void sendUserSearch(String typeAnimal);
 
         void loadAnimalDetails(AnimalPOJO animalPOJO);
 
-        void openShelter(ShelterPOJO shelterPOJO);
+
+        void changeFavouriteAnimal(AnimalPOJO animalPOJO, OnAnimalFavouriteResponse onAnimalFavouriteResponse, boolean toFavourite);
     }
 }

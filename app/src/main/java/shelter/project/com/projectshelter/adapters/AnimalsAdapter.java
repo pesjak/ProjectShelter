@@ -51,7 +51,7 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
     /**
      * Deletes current data if reset=TRUE and adds wallpapers to this list
      */
-    public void swapData(ArrayList<AnimalPOJO> newAnimalPojos, boolean reset) {
+    public void swapData(List<AnimalPOJO> newAnimalPojos, boolean reset) {
         if (reset) {
             animalPOJOS.clear();
         }
@@ -61,6 +61,12 @@ public class AnimalsAdapter extends RecyclerView.Adapter<AnimalViewHolder> {
         } else {
             notifyDataSetChanged();
         }
+    }
+
+    public void reset() {
+        animalPOJOS.clear();
+        notifyDataSetChanged();
+
     }
 
     public List<AnimalPOJO> getList() {

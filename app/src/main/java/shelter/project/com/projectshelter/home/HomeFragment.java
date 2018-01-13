@@ -135,7 +135,7 @@ public class HomeFragment extends Fragment implements HomeContract.View, OnAnima
 
     @Override
     public void onAnimalClick(AnimalPOJO animalPOJO) {
-        mPresenter.openAnimal(animalPOJO);
+        mPresenter.loadAnimalDetails(animalPOJO);
     }
 
     @Override

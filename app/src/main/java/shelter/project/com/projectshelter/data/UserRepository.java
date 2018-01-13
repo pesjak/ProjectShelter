@@ -36,10 +36,10 @@ public class UserRepository implements UserDataSource {
 
 
     @Override
-    public void saveNewUser() {
-        //TODO
+    public void saveNewUser(String email) {
         realm.executeTransaction(realm -> {
             RealmUser user = realm.createObject(RealmUser.class);
+            user.setEmail(email);
         });
     }
 

@@ -1,4 +1,4 @@
-package shelter.project.com.projectshelter.home;
+package shelter.project.com.projectshelter.search;
 
 import android.util.Log;
 
@@ -6,7 +6,6 @@ import java.util.List;
 
 import shelter.project.com.projectshelter.data.AnimalPOJO;
 import shelter.project.com.projectshelter.data.RealmUser;
-import shelter.project.com.projectshelter.data.ShelterPOJO;
 import shelter.project.com.projectshelter.data.UserDataSource;
 import shelter.project.com.projectshelter.data.UserRepository;
 import shelter.project.com.projectshelter.listeners.OnAnimalFavouriteResponse;
@@ -17,14 +16,14 @@ import shelter.project.com.projectshelter.retrofit.RetrofitHelper;
  * Created by primo on 7. 11. 2017.
  */
 
-public class HomePresenter implements HomeContract.Presenter {
-    private final String TAG = "MainPresenter";
+public class SearchPresenter implements SearchContract.Presenter {
+    private final String TAG = "SearchPresenter";
 
-    private final HomeContract.View mView;
+    private final SearchContract.View mView;
     private UserRepository mUserRepository;
-    RealmUser loggedIn;
+    private RealmUser loggedInUser;
 
-    public HomePresenter(HomeContract.View mView, UserRepository mUserRepository) {
+    public SearchPresenter(SearchContract.View mView, UserRepository mUserRepository) {
         this.mView = mView;
         this.mUserRepository = mUserRepository;
         mView.setPresenter(this);
@@ -32,21 +31,10 @@ public class HomePresenter implements HomeContract.Presenter {
 
     @Override
     public void start() {
-
-        /*
-        * TODO
-        * Check if search saved in local base
-        * Send that search to request
-        * If no search show random animals
-        *
-        * */
-
-
-        loadListShelters();
         mUserRepository.getUser(new UserDataSource.GetLoggedInUserCallback() {
             @Override
             public void onUserLoggedIn(RealmUser user) {
-                loggedIn = user;
+                loggedInUser = user;
             }
 
             @Override
@@ -54,48 +42,43 @@ public class HomePresenter implements HomeContract.Presenter {
 
             }
         });
-
-        loadListAnimals();
-
     }
 
 
     @Override
-    public void loadListAnimals() {
+    public void loadUserSearch() {
+
+    }
+
+    @Override
+    public void sendUserSearch(String typeAnimal) {
+        Log.d(TAG, "sendUserSearch: " + typeAnimal);
+        //   RetrofitHelper.sendUserSearch();
+        mView.showLoading();
+
         RetrofitHelper.getAnimalsSearch(new RetrofitCallbacks.getAnimalsCallback() {
             @Override
             public void onAnimalsLoaded(List<AnimalPOJO> animalPOJOS) {
                 if (animalPOJOS != null) {
-                    mView.showAnimals(animalPOJOS);
-                    mView.hideProgressBarAnimals();
+                    mView.showSearchResults(animalPOJOS);
                 } else {
                     mView.showMessageError("Nič nismo našli :(");
+                    mView.showSearchResults(null);
                 }
+                mView.hideLoading();
             }
 
             @Override
             public void onErrorGettingAnimals(String error) {
                 mView.showMessageError(error);
+                mView.hideLoading();
             }
-        }, "vseeno");
+        }, typeAnimal);
     }
 
     @Override
-    public void loadListShelters() {
-        RetrofitHelper.getShelters(new RetrofitCallbacks.getSheltersCallback() {
-            @Override
-            public void onSheltersLoaded(List<ShelterPOJO> shelterPOJOS) {
-                mView.showShelters(shelterPOJOS);
-                mView.hideProgressBarShelters();
-            }
-
-            @Override
-            public void onError(String error) {
-                mView.showMessageError(error);
-
-            }
-        });
-
+    public void loadAnimalDetails(AnimalPOJO animalPOJO) {
+        mView.showMessageError("Opened animalPOJO");
     }
 
     @Override
@@ -112,19 +95,11 @@ public class HomePresenter implements HomeContract.Presenter {
                     Log.e(TAG, "onFailed: " + error);
                     onAnimalFavouriteResponse.onFailed();
                 }
-            }, loggedIn.getEmail(), animalPOJO, toFavourite);
+            }, loggedInUser.getEmail(), animalPOJO, toFavourite);
         } else {
             mView.showLogin();
         }
     }
 
-    @Override
-    public void loadAnimalDetails(AnimalPOJO animalPOJO) {
-        mView.showMessageError("Opened animalPOJO");
-    }
 
-    @Override
-    public void openShelter(ShelterPOJO shelterPOJO) {
-        mView.showMessageError("Opened Shelter");
-    }
 }

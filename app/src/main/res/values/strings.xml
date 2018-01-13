@@ -43,6 +43,11 @@
     <string name="find_your_animal">Najdi svojo žival</string>
     <string name="color">Barva</string>
     <string name="type">Vrsta</string>
+    <string name="found_animals">Najdene živali</string>
+    <string name="birds">ptice</string>
+    <string name="cats">mačke</string>
+    <string name="dogs">psi</string>
+    <string name="dontcare">vseeno</string>
 
 
 </resources>
